@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Livewire\Counter;
+use App\Http\Livewire\Posts;
 
 
 /*
@@ -35,3 +36,4 @@ Route::group(['middleware' => ['auth']], function() {
 
 // Testing livewire
 Route::get('livewire',Counter::class);
+Route::get('post', Posts::class);
