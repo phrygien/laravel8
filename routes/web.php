@@ -6,7 +6,9 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Livewire\Counter;
+use App\Http\Livewire\Home;
 use App\Http\Livewire\Posts;
+use App\Http\Livewire\PostIndexs;
 
 
 /*
@@ -26,7 +28,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', Home::class)->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
@@ -37,3 +39,4 @@ Route::group(['middleware' => ['auth']], function() {
 // Testing livewire
 Route::get('livewire',Counter::class);
 Route::get('post', Posts::class);
+Route::get('postindex', PostIndexs::class);
