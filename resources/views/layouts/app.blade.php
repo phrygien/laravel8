@@ -53,6 +53,113 @@
                                 </li>
                             @endif
                         @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Examen') }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">
+                                    {{ __('Calendrier Examen') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Liste examen') }}
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Gestion De Note') }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">
+                                    {{ __('Book') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Book Category') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Findramana boky') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    <span class="badge bg-danger">9</span> {{ __('Livre pas de retour') }}
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Bibliotheque') }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">
+                                    {{ __('Book') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Book Category') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Findramana boky') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    <span class="badge bg-danger">9</span> {{ __('Livre pas de retour') }}
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Academique') }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">
+                                    {{ __('Mon Etablissement') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Annee Academique') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Enseignant') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Admission') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Cycles') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Classe') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    {{ __('Etudiant') }}
+                                </a>
+                                <a class="dropdown-item">
+                                    <span class="badge bg-info">120</span> {{ __('Demmande admission') }}
+                                </a>
+                            </div>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Utilisateurs & Roles & Permissions') }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a href="{{route('users.index')}}" class="dropdown-item">
+                                    {{ __('Utilisateurs') }}
+                                </a>
+                                <a href="{{route('roles.index')}}" class="dropdown-item">
+                                    {{ __('Roles') }}
+                                </a>
+                                <a href="{{route('permissions.index')}}" class="dropdown-item">
+                                    {{ __('Permissions') }}
+                                </a>
+                            </div>
+                        </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -62,7 +169,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Deconnexion') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -77,7 +184,7 @@
         </nav>
 
         <main class="py-4">
-            {{ $slot }}
+            @yield('content')
         </main>
     </div>
     @livewireScripts
