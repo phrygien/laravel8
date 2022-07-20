@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Livewire\Counter;
+use App\Http\Controllers\AcademiqueController;
 
 
 /*
@@ -35,3 +36,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 // Testing livewire
 Route::get('livewire',Counter::class);
+Route::view('/academiques','academiques.academique');
+Route::post('/save',[AcademiqueController::class,'save'])->name('save.academique');
+Route::get('/fetchAcademique',[AcademiqueController::class,'fetchAcademique'])->name('fetch.academiques');
