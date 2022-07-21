@@ -28,10 +28,15 @@
                 <table id="example" class="table table-hover" style="width:100%">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Nom et prenom</th>
-                            <th>Adresse email</th>
-                            <th>Roles</th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Telephone</th>
+                            <th>Email</th>
+                            <th>Logo</th>
+                            <th>Ville</th>
+                            <th>Adresse</th>
+                            <th>Notes</th>
+                            <th>Responsable</th>
                             <th width="280px">Action</th>
                         </tr>
                     </thead>
@@ -40,10 +45,15 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>#</th>
+                            <th>Code</th>
                             <th>Name</th>
+                            <th>Telephone</th>
                             <th>Email</th>
-                            <th>Roles</th>
+                            <th>Logo</th>
+                            <th>Ville</th>
+                            <th>Adresse</th>
+                            <th>Notes</th>
+                            <th>Responsable</th>
                             <th width="280px">Action</th>
                         </tr>
                     </tfoot>
@@ -135,6 +145,36 @@
     }
 });
 
+fetchAcademique();
+// fetch academique
+function fetchAcademique()
+{
+    $.ajax({
+        type: "GET",
+        url: "/fetch-academique",
+        dataType: "json",
+        success: function (response) {
+            //console.log(response.academique);
+            $('tbody').html("");
+            $.each(response.academique, function (key, item) { 
+                 $('tbody').append('<tr>\
+                 <td>'+item.code+'</td>\
+                 <td>'+item.name+'</td>\
+                 <td>'+item.telephone+'</td>\
+                 <td>'+item.email+'</td>\ 
+                 <td><img src="" width="35px" height="35px"></td>\ 
+                 <td>'+item.ville+'</td>\
+                 <td>'+item.adresse+'</td>\ 
+                 <td>'+item.notes+'</td>\ 
+                 <td>'+item.responsable+'</td>\ 
+                </tr>');
+
+            });
+        }
+    });
+}
+
+// add academique
 $(document).on('submit','#AddAcademiqueForm', function(e){
     e.preventDefault();
     let formData = new FormData($('#AddAcademiqueForm')[0]);

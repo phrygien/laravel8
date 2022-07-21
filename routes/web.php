@@ -36,4 +36,5 @@ Route::group(['middleware' => ['auth']], function() {
     //academique
     Route::get('/academiques',[AcademiqueController::class, 'index']);
     Route::post('/academique',[AcademiqueController::class, 'store']);
+    Route::get('/fetch-academique',[AcademiqueController::class, 'fetchacademique']);
 });

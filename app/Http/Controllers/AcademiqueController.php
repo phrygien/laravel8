@@ -57,4 +57,12 @@ class AcademiqueController extends Controller
             ]);
         }
     }
+    
+    public function fetchacademique()
+    {
+        $academique = Academique::all();
+        return response()->json([
+            'academique'=>$academique,
+        ]);
+    }
 }
