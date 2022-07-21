@@ -32,10 +32,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
-});
 
-// Testing livewire
-Route::get('livewire',Counter::class);
-Route::view('/academiques','academiques.academique');
-Route::post('/save',[AcademiqueController::class,'save'])->name('save.academique');
-Route::get('/fetchAcademique',[AcademiqueController::class,'fetchAcademique'])->name('fetch.academiques');
+    //academique
+    Route::get('/academiques',[AcademiqueController::class, 'index']);
+    Route::post('/academique',[AcademiqueController::class, 'store']);
+});

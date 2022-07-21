@@ -4,65 +4,57 @@ namespace App\Http\Controllers;
 
 use App\Models\Academique;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AcademiqueController extends Controller
 {
 
-    public function save(Request $request){
-        $validator = \Validator::make($request->all(),[
-        'name'=>'required|string',
-        'code'=>'required|string|unique:academiques',
-        'logo'=>'required|image',
-        'telephone'=>'required|unique:academiques',
-        'responsable'=>'required',
-        'ville'=>'required|string'
-        ],[
-            'name.required'=>'Academique name is required',
-            'name.string'=>'Academique name must be a string',
-            'code.required'=>'Academique code is required',
-            'code.string'=>'Academique code must be a string',
-            'code.unique'=>'This academique code is already taken',
-            'logo.required'=>'Academiqure is required',
-            'logo.image'=>'Academique file must be an image',
-            'telephone.required'=>'Academique telephone is required',
-            'telephone.string'=>'Academique telephone must be a string',
-            'telephone.unique'=>'This academique telephone is already taken',
-            'responsable.required'=>'Academique responsable is required',
-            'ville.required'=>'Academique ville is required',
-        ]);
-
-        if(!$validator->passes()){
-            return response()->json(['code'=>0,'error'=>$validator->errors()->toArray()]);
-        }else{
-            $path = 'files/';
-            $file = $request->file('logo');
-            $file_name = time().'_'.$file->getClientOriginalName();
-
-        //    $upload = $file->storeAs($path, $file_name);
-        $upload = $file->storeAs($path, $file_name, 'public');
-
-            if($upload){
-                Academique::insert([
-                    'name'=>$request->name,
-                    'code'=>$request->code,
-                    'logo'=>$file_name,
-                    'telephone'=>$request->telephone,
-                    'email'=>$request->email,
-                    'ville'=>$request->ville,
-                    'adresse'=>$request->adresse,
-                    'notes'=>$request->notes,
-                    'responsable'=>$request->responsable,
-                    'status'=>$request->status
-                ]);
-                return response()->json(['code'=>1,'msg'=>'New academique has been saved successfully']);
-            }
-        }
+    public function index()
+    {
+        return view('academiques.index');
     }
 
-    public function fetchAcademique()
+    public function store(Request $request)
     {
-        $academiques = Academique::all();
-        $data = \View::make('academiques.all_academique')->with('academiques', $academiques)->render();
-        return response()->json(['code'=>1,'result'=>$data]);
+        $validator = Validator::make($request->all(), [
+            'name'=>'required',
+            'code'=>'required',
+            'logo'=>'required|image|mimes:jpeg,png,jpg|max:2048',
+            'telephone'=>'required|unique:academiques',
+            'email'=>'required|unique:academiques'
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages()
+            ]);
+        }else{
+            $academique = new Academique;
+            $academique->name = $request->input('name');
+            $academique->code = $request->input('code');
+            $academique->telephone = $request->input('telephone');
+            $academique->email = $request->input('email');
+            $academique->ville = $request->input('ville');
+            $academique->adresse = $request->input('adresse');
+            $academique->notes = $request->input('notes');
+            $academique->responsable = $request->input('responsable');
+            $academique->status = $request->input('status');
+
+            if($request->hasFile('logo'))
+            {
+                $file = $request->file('logo');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() .'.' .$extension;
+                $file->move('uploads/logos/',$filename);
+                $academique->logo = $filename;
+            }
+            $academique->save();
+            return response()->json([
+                'status'=>200,
+                'message'=>'Academique Saved successfully!'
+            ]);
+        }
     }
 }
