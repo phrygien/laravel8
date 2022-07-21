@@ -162,11 +162,12 @@ function fetchAcademique()
                  <td>'+item.name+'</td>\
                  <td>'+item.telephone+'</td>\
                  <td>'+item.email+'</td>\ 
-                 <td><img src="" width="35px" height="35px"></td>\ 
+                 <td><img src="uploads/logos/'+item.logo+'" width="35px" height="35px"></td>\ 
                  <td>'+item.ville+'</td>\
                  <td>'+item.adresse+'</td>\ 
                  <td>'+item.notes+'</td>\ 
                  <td>'+item.responsable+'</td>\ 
+                 <td><button class="btn btn-primary btn-sm">Editer</button> <button class="btn btn-danger btn-sm">Supprimer</button></td>\ 
                 </tr>');
 
             });
