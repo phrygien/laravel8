@@ -34,7 +34,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('permissions', PermissionController::class);
 
     //academique
-    Route::get('/academiques',[AcademiqueController::class, 'index']);
-    Route::post('/academique',[AcademiqueController::class, 'store']);
-    Route::get('/fetch-academique',[AcademiqueController::class, 'fetchacademique']);
+    Route::get('/academique', [AcademiqueController::class, 'index']);
+    Route::post('/storeAcademique', [AcademiqueController::class, 'store'])->name('store_academique');
+    Route::get('/fetchallAcademique', [AcademiqueController::class, 'fetchAll'])->name('fetchAll_academique');
+    Route::delete('/deleteAcademique', [AcademiqueController::class, 'delete'])->name('delete_academique');
+    Route::get('/editAcademique', [AcademiqueController::class, 'edit'])->name('edit_academique');
+    Route::post('/updateAcademique', [AcademiqueController::class, 'update'])->name('update_academique');
 });
