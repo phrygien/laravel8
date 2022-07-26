@@ -137,6 +137,9 @@
                                 <a class="dropdown-item" href="{{route('annee_academique')}}">
                                     {{ __('Annee Academique') }}
                                 </a>
+                                <a class="dropdown-item" href="{{route('cycles.list')}}">
+                                    {{ __('Cycle Academique') }}
+                                </a>
                                 <a class="dropdown-item">
                                     {{ __('Enseignant') }}
                                 </a>

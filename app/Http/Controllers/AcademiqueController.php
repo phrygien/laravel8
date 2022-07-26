@@ -20,7 +20,7 @@ class AcademiqueController extends Controller
 		$academique = Academique::all();
 		$output = '';
 		if ($academique->count() > 0) {
-			$output .= '<table class="table table-striped table-sm text-center align-middle" id="example">
+			$output .= '<table class="table table-striped table-bordered table-sm text-center align-middle" id="example">
             <thead>
               <tr>
                 <th>Code</th>

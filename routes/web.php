@@ -8,6 +8,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Livewire\Counter;
 use App\Http\Controllers\AcademiqueController;
 use App\Http\Controllers\AnneeAcademiqueController;
+use App\Http\Controllers\CycleController;
 
 
 /*
@@ -49,4 +50,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('/deleteAnneeAcademique', [AnneeAcademiqueController::class, 'delete'])->name('delete_annee_academique');
     Route::get('/editAnneeAcademique', [AnneeAcademiqueController::class, 'edit'])->name('edit_annee_academique');
     Route::post('/updateAnneeAcademique', [AnneeAcademiqueController::class, 'update'])->name('update_annee_academique');
+
+    //cycle
+    Route::get('/cycle-list',[CycleController::class, 'index'])->name('cycles.list');
+    Route::post('/add-cycle',[CycleController::class,'addCycle'])->name('add.cycle');
+    Route::get('/getCycleList',[CycleController::class, 'getCycleList'])->name('get.cycles.list');
+    Route::post('/getCycleDetails',[CycleController::class, 'getCycleDetails'])->name('get.cycle.details');
+    Route::post('/updateCycleDetails',[CycleController::class, 'updateCycleDetails'])->name('update.cycle.details');
+    Route::post('/deleteCycle',[CycleController::class,'deleteCycle'])->name('delete.cycle');
+    Route::post('/deleteSelectedCycles',[CycleController::class,'deleteSelectedCycles'])->name('delete.selected.cycles');
 });

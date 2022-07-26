@@ -26,7 +26,7 @@ class AnneeAcademiqueController extends Controller
 
 		$output = '';
 		if ($anneeAcademique->count() > 0) {
-			$output .= '<table class="table table-striped table-sm text-center align-middle" id="tableAnnee">
+			$output .= '<table class="table table-striped table-bordered table-sm text-center align-middle" id="tableAnnee">
             <thead>
               <tr>
                 <th>Code</th>
