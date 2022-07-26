@@ -21,6 +21,9 @@
         <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#AddAcademiqueModal">
             Ajouter Academique
           </button>
+          <button type="button" class="btn btn-success mb-3">
+            Export CSV
+          </button>
         <div class="card">
             <div class="card-header">Utilisateur
             </div>
@@ -41,17 +44,19 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <ul id="save_errorList"></ul>
+            <div id="save_errorList" class="alert alert-warning d-none"></div>
             <form class="row g-3" id="add_employee_form" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-6">
                   <label for="inputEmail4" class="form-label">Nom</label>
                   <input type="text" name="name" class="form-control" id="inputEmail4">
+                  <span class="text-danger error-text name_error"></span>
                 </div>
 
                 <div class="col-md-6">
                   <label for="inputPassword4" class="form-label">Code</label>
                   <input type="text" name="code" class="form-control" id="inputPassword4">
+                  <span class="text-danger error-text code_error"></span>
                 </div>
 
                 <div class="col-md-6">
@@ -70,7 +75,7 @@
                 </div>
                 <div class="col-12">
                   <label for="inputAddress2" class="form-label">Ville</label>
-                  <input type="text" name="ville" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                  <input type="text" name="ville" class="form-control" id="inputAddress2" placeholder="">
                 </div>
                 <div class="col-md-6">
                   <label for="inputCity" class="form-label">Adresse</label>
@@ -205,17 +210,25 @@ data-bs-backdrop="static" aria-hidden="true">
         processData: false,
         dataType: 'json',
         success: function(response) {
-          if (response.status == 200) {
+          if(response.status == 400){
+            $('#save_errorList').html("");
+            $('#save_errorList').removeClass('d-none');
+            $.each(response.errors, function (key, err_value) { 
+               $('#save_errorList').append('<li>'+err_value+'</li>');
+            });
+          }
+          else if (response.status == 200) {
             Swal.fire(
               'Added!',
               'Academique Added Successfully!',
               'success'
             )
             fetchAllEmployees();
+
+            $("#add_employee_btn").text('Add Academique');
+            $("#add_employee_form")[0].reset();
+            $("#AddAcademiqueModal").modal('hide');
           }
-          $("#add_employee_btn").text('Add Academique');
-          $("#add_employee_form")[0].reset();
-          $("#AddAcademiqueModal").modal('hide');
         }
       });
     });
@@ -285,13 +298,13 @@ data-bs-backdrop="static" aria-hidden="true">
       let id = $(this).attr('id');
       let csrf = '{{ csrf_token() }}';
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Êtes-vous sûr?',
+        text: "Vous ne pourrez pas revenir en arrière !",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Oui, supprimez-le !'
       }).then((result) => {
         if (result.isConfirmed) {
           $.ajax({
@@ -304,8 +317,8 @@ data-bs-backdrop="static" aria-hidden="true">
             success: function(response) {
               console.log(response);
               Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Supprimé !',
+                'Votre fichier a été supprimé.',
                 'success'
               )
               fetchAllEmployees();

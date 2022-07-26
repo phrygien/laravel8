@@ -59,15 +59,38 @@ class AcademiqueController extends Controller
 
     	// handle insert a new employee ajax request
 	public function store(Request $request) {
-		$file = $request->file('logo');
-		$fileName = time() . '.' . $file->getClientOriginalExtension();
-		$file->storeAs('public/logos', $fileName);
-
-		$empData = ['name' => $request->name, 'code' => $request->code, 'email' => $request->email, 'telephone' => $request->telephone, 'ville' => $request->ville, 'logo' => $fileName,'adresse' => $request->adresse,'notes' => $request->notes,'responsable' => $request->responsable,'status' => $request->status];
-		Academique::create($empData);
-		return response()->json([
-			'status' => 200,
-		]);
+    
+    $validator = Validator::make($request->all(), [
+      'name'=>'required|string',
+      'code'=>'required|string',
+      'email'=>'required|email|unique:academiques',
+      'telephone'=>'required|unique:academiques',
+      'ville'=>'required|string',
+      'responsable'=>'required|string',
+    ],[
+      'name.required'=>"Nom de l'Academique est obligatoire",
+      'code.required'=>"Code de l'Academique est obligatoire",
+      'email.required'=>"Email de l'Academique est obligatoire",
+      'email.unique'=>"Adresse email deja existe",
+      'telephone.required'=>"Numero Telephone deja existe",
+      'telephone.unique'=>"Telephone Academique deja existe",
+    ]);
+    if($validator->fails()){
+      return response()->json([
+        'status'=>400,
+        'errors'=>$validator->messages(),
+      ]);
+    }else{
+      $file = $request->file('logo');
+      $fileName = time() . '.' . $file->getClientOriginalExtension();
+      $file->storeAs('public/logos', $fileName);
+  
+      $empData = ['name' => $request->name, 'code' => $request->code, 'email' => $request->email, 'telephone' => $request->telephone, 'ville' => $request->ville, 'logo' => $fileName,'adresse' => $request->adresse,'notes' => $request->notes,'responsable' => $request->responsable,'status' => $request->status];
+      Academique::create($empData);
+      return response()->json([
+        'status' => 200,
+      ]);
+    }
 	}
 
     	// handle edit an employee ajax request
@@ -100,6 +123,14 @@ class AcademiqueController extends Controller
 		]);
 	}
 
+  // handle delete an employee ajax request
+	public function delete(Request $request) {
+		$id = $request->id;
+		$aca = Academique::find($id);
+		if (Storage::delete('public/logos/' . $aca->logo)) {
+			Academique::destroy($id);
+		}
+	}
     // public function store(Request $request)
     // {
     //     $validator = Validator::make($request->all(), [
