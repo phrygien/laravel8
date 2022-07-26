@@ -25,7 +25,7 @@
             Export CSV
           </button>
         <div class="card">
-            <div class="card-header">Utilisateur
+            <div class="card-header">Academiques
             </div>
             <div class="card-body" id="show_all_employees">
               <h1 class="text-center text-secondary my-5">Chargement...</h1>

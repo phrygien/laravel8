@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Livewire\Counter;
 use App\Http\Controllers\AcademiqueController;
+use App\Http\Controllers\AnneeAcademiqueController;
 
 
 /*
@@ -40,4 +41,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('/deleteAcademique', [AcademiqueController::class, 'delete'])->name('delete_academique');
     Route::get('/editAcademique', [AcademiqueController::class, 'edit'])->name('edit_academique');
     Route::post('/updateAcademique', [AcademiqueController::class, 'update'])->name('update_academique');
+
+    //annee academique
+    Route::get('/anneeacademique', [AnneeAcademiqueController::class, 'index'])->name('annee_academique');
+    Route::post('/storeAnneeAcademique', [AnneeAcademiqueController::class, 'store'])->name('store_annee_academique');
+    Route::get('/fetchallAnneeAcademique', [AnneeAcademiqueController::class, 'fetchAll'])->name('fetchAll_annee_academique');
+    Route::delete('/deleteAnneeAcademique', [AnneeAcademiqueController::class, 'delete'])->name('delete_annee_academique');
+    Route::get('/editAnneeAcademique', [AnneeAcademiqueController::class, 'edit'])->name('edit_annee_academique');
+    Route::post('/updateAnneeAcademique', [AnneeAcademiqueController::class, 'update'])->name('update_annee_academique');
 });

@@ -134,7 +134,7 @@
                                 <a class="dropdown-item">
                                     {{ __('Mon Etablissement') }}
                                 </a>
-                                <a class="dropdown-item">
+                                <a class="dropdown-item" href="{{route('annee_academique')}}">
                                     {{ __('Annee Academique') }}
                                 </a>
                                 <a class="dropdown-item">
