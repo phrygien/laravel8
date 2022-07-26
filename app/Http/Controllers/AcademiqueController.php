@@ -44,6 +44,9 @@ class AcademiqueController extends Controller
                 <td>' . $aca->status . '</td>
                 <td>' . $aca->responsable . '</td>
                 <td>
+                  <a href="#" id="' . $aca->id . '" class="btn btn-outline-warning btn-sm mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-lock h4"></i> Fermer</a>
+                  <a href="#" id="' . $aca->id . '" class="btn btn-outline-success btn-sm mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-lock h4"></i> Ouvrir</a>
+
                   <a href="#" id="' . $aca->id . '" class="btn btn-primary btn-sm mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-pencil-square h4"></i> Modifier</a>
 
                   <a href="#" id="' . $aca->id . '" class="btn btn-danger btn-sm mx-1 deleteIcon"><i class="bi-trash h4"></i>Supprimer</a>
