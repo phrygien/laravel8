@@ -39,13 +39,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-hover table-condensed" id="counties-table">
+                    <table class="table table-hover table-condensed table-bordered" id="counties-table">
                         <thead>
                             <th><input type="checkbox" name="main_checkbox"><label></label></th>
                             <th>#</th>
                             <th>Name</th>
                             <th>Code</th>
-                            <th>Actions <button class="btn btn-sm btn-danger d-none" id="deleteAllBtn">Supprimer All</button></th>
+                            <th>Actions <button class="btn btn-sm btn-danger d-none" id="deleteAllBtn">Supprimer Tous</button></th>
                         </thead>
                         <tbody></tbody>
                     </table>
@@ -88,8 +88,13 @@
                         }else{
                             $(form)[0].reset();
                            //  alert(data.msg);
+                           Swal.fire(
+                                'Saved!',
+                                'Cycle Saved Successfully!',
+                                'success'
+                                )
                            $('#counties-table').DataTable().ajax.reload(null, false);
-                           toastr.success(data.msg);
+                           //toastr.success(data.msg);
                         }
                    }
                });
@@ -100,8 +105,8 @@
                 processing:true,
                 info:true,
                 ajax:"{{ route('get.cycles.list') }}",
-                "pageLength":5,
-                "aLengthMenu":[[5,10,25,50,-1],[5,10,25,50,"All"]],
+                "pageLength":10,
+                "aLengthMenu":[[5,10,25,50,-1],[5,10,25,50,"Tous"]],
                 columns:[
                    //  {data:'id', name:'id'},
                     {data:'checkbox', name:'checkbox', orderable:false, searchable:false},
@@ -153,7 +158,12 @@
                              $('#counties-table').DataTable().ajax.reload(null, false);
                              $('.editCountry').modal('hide');
                              $('.editCountry').find('form')[0].reset();
-                             toastr.success(data.msg);
+                             //toastr.success(data.msg);
+                             Swal.fire(
+                                'Saved!',
+                                'Cycle Saved Successfully!',
+                                'success'
+                                )
                          }
                    }
                });
@@ -219,7 +229,7 @@
 
       function toggledeleteAllBtn(){
           if( $('input[name="country_checkbox"]:checked').length > 0 ){
-              $('button#deleteAllBtn').text('Delete ('+$('input[name="country_checkbox"]:checked').length+')').removeClass('d-none');
+              $('button#deleteAllBtn').text('Suupprimer ('+$('input[name="country_checkbox"]:checked').length+')').removeClass('d-none');
           }else{
               $('button#deleteAllBtn').addClass('d-none');
           }
@@ -247,10 +257,15 @@
                   allowOutsideClick:false
               }).then(function(result){
                   if(result.value){
-                      $.post(url,{countries_ids:checkedCountries},function(data){
+                      $.post(url,{cycles_id:checkedCountries},function(data){
                          if(data.code == 1){
                              $('#counties-table').DataTable().ajax.reload(null, true);
-                             toastr.success(data.msg);
+                             //toastr.success(data.msg);
+                             Swal.fire(
+                                'Deleted',
+                                'Cycle Deleted Successfully!',
+                                'success'
+                                )
                          }
                       },'json');
                   }
