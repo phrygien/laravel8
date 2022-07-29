@@ -1,169 +1,277 @@
-@extends('layouts.app')
+@extends('layouts.v1.app')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
 
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="text-card"><span class="badge bg-info">14</span> Nouveau demande</p>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Ville</th>
-                                    <th>Adresse</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#123-BG</td>
-                                        <td>Academique One</td>
-                                        <td>Manakara</td>
-                                        <td>Fokontany -Anranovato-Oeust</td>
-                                    </tr>
+<div class="page-heading">
+    <h3>Tableaux de bord</h3>
+</div>
 
-                                    <tr>
-                                        <td>#678-BG</td>
-                                        <td>Academique One</td>
-                                        <td>Manakara</td>
-                                        <td>Fokontany -Anranovato-Oeust</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>#908-BG</td>
-                                        <td>Academique One</td>
-                                        <td>Manakara</td>
-                                        <td>Fokontany -Anranovato-Oeust</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>#660-BG</td>
-                                        <td>Academique One</td>
-                                        <td>Manakara</td>
-                                        <td>Fokontany -Anranovato-Oeust</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+<div class="page-content">
+    <section class="row">
+        <div class="col-12 col-lg-9">
+            <div class="row">
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon purple">
+                                        <i class="iconly-boldShow"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Profile Views</h6>
+                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <p class="text-card"><span class="badge bg-secondary">1400</span> Academique Status</p>
-                            <table class="table table-bordered table-responsive">
-                                <thead>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Ville</th>
-                                    <th>Adresse</th>
-                                    <th>Etat</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#123-BG</td>
-                                        <td>Academique One</td>
-                                        <td>Manakara</td>
-                                        <td>Fokontany -Anranovato-Oeust</td>
-                                        <th><span for="" class="badge bg-success">Enable</span></th>
-                                    </tr>
-
-                                    <tr class="alert alert-warning">
-                                        <td>#678-BG</td>
-                                        <td>Academique One</td>
-                                        <td>Manakara</td>
-                                        <td>Fokontany -Anranovato-Oeust</td>
-                                        <th><span for="" class="badge bg-warning">2 Mois reste</span></th>
-                                    </tr>
-
-                                    <tr class="alert alert-danger">
-                                        <td>#908-BG</td>
-                                        <td>Academique One</td>
-                                        <td>Manakara</td>
-                                        <td>Fokontany -Anranovato-Oeust</td>
-                                        <th><span for="" class="badge bg-danger">Disabled</span></th>
-                                    </tr>
-
-                                    <tr>
-                                        <td>#660-BG</td>
-                                        <td>Academique One</td>
-                                        <td>Manakara</td>
-                                        <td>Fokontany -Anranovato-Oeust</td>
-                                        <th><span for="" class="badge bg-success">Enable</span></th>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon blue">
+                                        <i class="iconly-boldProfile"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Followers</h6>
+                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon green">
+                                        <i class="iconly-boldAdd-User"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Following</h6>
+                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon red">
+                                        <i class="iconly-boldBookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Saved Post</h6>
+                                    <h6 class="font-extrabold mb-0">112</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row mt-2 text-center" >
-                <div class="col-md-3 mb-2">
+            <div class="row">
+                <div class="col-12">
                     <div class="card">
+                        <div class="card-header">
+                            <h4>Profile Visit</h4>
+                        </div>
                         <div class="card-body">
-                            <p class="text-card">Roles <span class="badge bg-success">12</span></p>
+                            <div id="chart-profile-visit"></div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-3 mb-2">
+            </div>
+            <div class="row">
+                <div class="col-12 col-xl-4">
                     <div class="card">
+                        <div class="card-header">
+                            <h4>Profile Visit</h4>
+                        </div>
                         <div class="card-body">
-                            <p class="text-card">Utilisateur <span class="badge bg-warning">30</span></p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="d-flex align-items-center">
+                                        <svg class="bi text-primary" width="32" height="32" fill="blue"
+                                            style="width:10px">
+                                            <use
+                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
+                                        </svg>
+                                        <h5 class="mb-0 ms-3">Europe</h5>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="mb-0">862</h5>
+                                </div>
+                                <div class="col-12">
+                                    <div id="chart-europe"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="d-flex align-items-center">
+                                        <svg class="bi text-success" width="32" height="32" fill="blue"
+                                            style="width:10px">
+                                            <use
+                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
+                                        </svg>
+                                        <h5 class="mb-0 ms-3">America</h5>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="mb-0">375</h5>
+                                </div>
+                                <div class="col-12">
+                                    <div id="chart-america"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="d-flex align-items-center">
+                                        <svg class="bi text-danger" width="32" height="32" fill="blue"
+                                            style="width:10px">
+                                            <use
+                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
+                                        </svg>
+                                        <h5 class="mb-0 ms-3">Indonesia</h5>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="mb-0">1025</h5>
+                                </div>
+                                <div class="col-12">
+                                    <div id="chart-indonesia"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-3 mb-2">
+                <div class="col-12 col-xl-8">
                     <div class="card">
-                        <div class="card-body">
-                            <p class="text-card">Permissions <span class="badge bg-info">12</span></p>
+                        <div class="card-header">
+                            <h4>Latest Comments</h4>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-2">
-                    <div class="card">
                         <div class="card-body">
-                            <p class="text-card">Etablissement <span class="badge bg-primary">1400</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 mt-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="text-card">Enseignant <span class="badge bg-danger">120</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 mt-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="text-card">Cours <span class="badge bg-secondary">34</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 mt-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="text-card">Etudiant <span class="badge bg-dark">34</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 mt-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="text-card">Admission <span class="badge bg-info">200</span></p>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-lg">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Comment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar avatar-md">
+                                                        <img src="assets/images/faces/5.jpg">
+                                                    </div>
+                                                    <p class="font-bold ms-3 mb-0">Si Cantik</p>
+                                                </div>
+                                            </td>
+                                            <td class="col-auto">
+                                                <p class=" mb-0">Congratulations on your graduation!</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar avatar-md">
+                                                        <img src="assets/images/faces/2.jpg">
+                                                    </div>
+                                                    <p class="font-bold ms-3 mb-0">Si Ganteng</p>
+                                                </div>
+                                            </td>
+                                            <td class="col-auto">
+                                                <p class=" mb-0">Wow amazing design! Can you make another
+                                                    tutorial for
+                                                    this design?</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="col-12 col-lg-3">
+            <div class="card">
+                <div class="card-body py-4 px-5">
+                    <div class="d-flex align-items-center">
+                        <div class="avatar avatar-xl">
+                            <img src="assets/images/faces/1.jpg" alt="Face 1">
+                        </div>
+                        <div class="ms-3 name">
+                            <h5 class="font-bold">John Duck</h5>
+                            <h6 class="text-muted mb-0">@johnducky</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Recent Messages</h4>
+                </div>
+                <div class="card-content pb-4">
+                    <div class="recent-message d-flex px-4 py-3">
+                        <div class="avatar avatar-lg">
+                            <img src="assets/images/faces/4.jpg">
+                        </div>
+                        <div class="name ms-4">
+                            <h5 class="mb-1">Hank Schrader</h5>
+                            <h6 class="text-muted mb-0">@johnducky</h6>
+                        </div>
+                    </div>
+                    <div class="recent-message d-flex px-4 py-3">
+                        <div class="avatar avatar-lg">
+                            <img src="assets/images/faces/5.jpg">
+                        </div>
+                        <div class="name ms-4">
+                            <h5 class="mb-1">Dean Winchester</h5>
+                            <h6 class="text-muted mb-0">@imdean</h6>
+                        </div>
+                    </div>
+                    <div class="recent-message d-flex px-4 py-3">
+                        <div class="avatar avatar-lg">
+                            <img src="assets/images/faces/1.jpg">
+                        </div>
+                        <div class="name ms-4">
+                            <h5 class="mb-1">John Dodol</h5>
+                            <h6 class="text-muted mb-0">@dodoljohn</h6>
+                        </div>
+                    </div>
+                    <div class="px-4">
+                        <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
+                            Conversation</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Visitors Profile</h4>
+                </div>
+                <div class="card-body">
+                    <div id="chart-visitors-profile"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 @endsection

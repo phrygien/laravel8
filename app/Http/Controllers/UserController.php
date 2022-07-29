@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Hash;
 use App\Models\User;
+use App\Models\Academique;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Spatie\Permission\Models\Role;
@@ -32,7 +33,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id', 'desc')->get();
-        
         return view('users.index', compact('data'));
     }
 
@@ -45,7 +45,13 @@ class UserController extends Controller
     {
         $roles = Role::pluck('name','name')->all();
 
-        return view('users.create', compact('roles'));
+        $academiques = DB::table('academiques')
+                        ->where('status','=',1)
+                        ->get()->toArray();
+
+
+
+        return view('users.create', compact('roles','academiques'));
     }
 
     /**
@@ -60,17 +66,33 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed',
-            'roles' => 'required'
+            'roles' => 'required',
+            'academique_id' => 'required',
+            'anneeacademique_id' => 'required'
         ]);
     
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-    
+        
+        $academique_id = $input['academique_id'];
+        $annee_academiques = DB::table('annee_aacademiques')
+        ->where('academique_id','=',$academique_id)
+        ->get()->toArray();
+
+        if(count($annee_academiques)<=0){
+            return redirect()->route('users.create')
+            ->with('success', "Pas d'annee acdemique ouvert sur cette Academique");
+        }else{
+        $annee_academique_id = $annee_academiques[0]->id;
+
+        $input['anneeacademique_id'] = $annee_academique_id;
+
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
-    
+        
         return redirect()->route('users.index')
             ->with('success', 'User created successfully.');
+        }
     }
 
     /**
